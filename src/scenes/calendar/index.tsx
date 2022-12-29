@@ -16,16 +16,24 @@ import {
 } from '@mui/material';
 import { tokens } from '../../theme';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { FormDialog } from './FormDialog';
 
 export const Calendar = () => {
   const theme = useTheme();
   const isMobile = useIsMobile();
   const colors = tokens(theme.palette.mode);
   const [currentEvents, setCurrentEvents] = useState<any[]>([]);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<any>({});
 
-  const handleDateClick = (selected: any) => {
-    const title = prompt('Please enter a new title for your event');
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleFormSubmit = (values: { title: string }) => {
+    console.log('submit---');
     const calendarApi = selected.view.calendar;
+    const title = values.title;
     calendarApi.unselect();
 
     if (title) {
@@ -37,6 +45,12 @@ export const Calendar = () => {
         allDay: selected.allDay,
       });
     }
+    setOpen(false);
+  };
+
+  const handleDateClick = (selected: any) => {
+    setSelected(selected);
+    setOpen(true);
   };
 
   const handleEventClick = (selected: any) => {
@@ -51,7 +65,6 @@ export const Calendar = () => {
   return (
     <Box m='20px'>
       <Header title='CALENDAR' subtitle='Full Calendar Interactive Page' />
-
       <Box
         display='flex'
         justifyContent='space-between'
@@ -96,8 +109,14 @@ export const Calendar = () => {
           ml='15px'
           sx={{
             '--fc-neutral-bg-color': colors.primary[400],
-            '--fc-list-event-hover-bg-color': '#6870fa',
             '--fc-button-bg-color': colors.primary[400],
+            ...(theme.palette.mode === 'dark'
+              ? { '--fc-list-event-hover-bg-color': '#6870fa' }
+              : {
+                  '--fc-button-text-color': colors.grey[300],
+                  '--fc-button-active-bg-color': colors.grey[800],
+                  '--fc-button-hover-bg-color': colors.grey[800],
+                }),
           }}
         >
           <FullCalendar
@@ -136,6 +155,11 @@ export const Calendar = () => {
           />
         </Box>
       </Box>
+      <FormDialog
+        open={open}
+        handleClose={handleClose}
+        handleFormSubmit={handleFormSubmit}
+      />
     </Box>
   );
 };

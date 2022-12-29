@@ -191,6 +191,28 @@ export function themeSettings(mode: ColorMode): ThemeOptions {
         fontSize: 14,
       },
     },
+    components: {
+      MuiDialog: {
+        styleOverrides: {
+          paper:
+            mode === 'dark'
+              ? {
+                  background: colors.primary[500],
+                }
+              : { background: '#fcfcfc' },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          textPrimary:
+            mode === 'dark'
+              ? {
+                  color: colors.grey[300],
+                }
+              : {},
+        },
+      },
+    },
   };
 }
 
