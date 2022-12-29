@@ -16,13 +16,14 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
   const { title, to, icon, selected, setSelected } = props;
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <MenuItem
-      active={selected === title}
+      active={selected === to}
       style={{
         color: colors.grey[100],
       }}
-      onClick={() => setSelected(title)}
+      onClick={() => setSelected(to)}
       icon={icon}
       routerLink={<Link to={to} />}
     >
