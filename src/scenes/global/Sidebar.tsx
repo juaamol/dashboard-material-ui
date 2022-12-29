@@ -51,7 +51,8 @@ export const Sidebar = () => {
           }}
           rootStyles={{
             [`.${menuClasses.button}:hover`]: {
-              backgroundColor: '#868dfb',
+              backgroundColor: '#6870fa',
+              color: `${colors.grey[100]} !important`,
             },
           }}
         >

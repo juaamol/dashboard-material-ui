@@ -24,9 +24,9 @@ export const SidebarItem: FC<SidebarItemProps> = (props) => {
       }}
       onClick={() => setSelected(title)}
       icon={icon}
+      routerLink={<Link to={to} />}
     >
       <Typography>{title}</Typography>
-      <Link to={to} />
     </MenuItem>
   );
 };
