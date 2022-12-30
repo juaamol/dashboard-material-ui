@@ -28,7 +28,7 @@ jobs:
       - run: npm run build --if-present
   deploy:
     permissions:
-      idToken: read
+      id-token: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
