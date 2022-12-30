@@ -28,7 +28,9 @@ jobs:
       - run: npm run build --if-present
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: $GITHUB_WORKSPACE/dist
+          name: page
+          path: dist
+          if-no-files-found: error
   deploy:
     permissions:
       id-token: write
