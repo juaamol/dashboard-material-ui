@@ -28,7 +28,7 @@ jobs:
       - run: npm run build --if-present
       - uses: actions/upload-pages-artifact@v1
         with:
-          name: page
+          name: github-pages
           path: dist
           if-no-files-found: error
   deploy:
