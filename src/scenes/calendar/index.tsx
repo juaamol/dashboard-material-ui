@@ -31,7 +31,6 @@ export const Calendar = () => {
   };
 
   const handleFormSubmit = (values: { title: string }) => {
-    console.log('submit---');
     const calendarApi = selected.view.calendar;
     const title = values.title;
     calendarApi.unselect();
@@ -45,6 +44,7 @@ export const Calendar = () => {
         allDay: selected.allDay,
       });
     }
+    setSelected({});
     setOpen(false);
   };
 

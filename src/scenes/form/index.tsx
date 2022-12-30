@@ -42,6 +42,7 @@ export const Form = () => {
             <Box
               display='grid'
               gap='30px'
+              m='40px 0 0 0'
               gridTemplateColumns='repeat(4, minmax(0, 1fr))'
               sx={{
                 '& > div': { gridColumn: isMobile ? 'span 4' : undefined },
