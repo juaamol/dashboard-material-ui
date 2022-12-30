@@ -7,7 +7,7 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/dashboard-material-ui'>
       <ProSidebarProvider>
         <App />
       </ProSidebarProvider>
