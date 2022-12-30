@@ -79,7 +79,6 @@ export const LineChart: FC<LineChartProps> = ({
       }}
       axisLeft={{
         tickSize: 5,
-        tickValues: 5,
         tickPadding: 5,
         tickRotation: 0,
         legend: hasAxisLegends ? 'count' : undefined,
