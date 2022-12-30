@@ -66,6 +66,7 @@ export const Calendar = () => {
     <Box m='20px'>
       <Header title='CALENDAR' subtitle='Full Calendar Interactive Page' />
       <Box
+        m='40px 0 0 0'
         display='flex'
         justifyContent='space-between'
         flexDirection={isMobile ? 'column-reverse' : undefined}
