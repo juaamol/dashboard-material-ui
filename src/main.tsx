@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter basename='/dashboard-material-ui'>
+    <HashRouter basename='/dashboard-material-ui'>
       <ProSidebarProvider>
         <App />
       </ProSidebarProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
 );
