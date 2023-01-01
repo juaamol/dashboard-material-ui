@@ -12,9 +12,13 @@ import { BarChart } from '../../components/BarChart';
 import { StatBox } from '../../components/StatBox';
 import { ProgressCircle } from '../../components/ProgressCircle';
 import { Header } from '../../components/Header';
+import { useIsTablet } from '../../hooks/useIsTablet';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 export const Dashboard = () => {
   const theme = useTheme();
+  const isTablet = useIsTablet();
+  const isMobile = useIsMobile();
   const colors = tokens(theme.palette.mode);
 
   return (
@@ -23,18 +27,26 @@ export const Dashboard = () => {
         <Header title='DASHBOARD' subtitle='Welcome to your dashboard' />
 
         <Box>
-          <Button
-            sx={{
-              backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
-              fontSize: '14px',
-              fontWeight: 'bold',
-              padding: '10px 20px',
-            }}
-          >
-            <DownloadOutlinedIcon sx={{ mr: '10px' }} />
-            Download Reports
-          </Button>
+          {isTablet ? (
+            <IconButton>
+              <DownloadOutlinedIcon
+                sx={{ fontSize: '26px', color: colors.grey[100] }}
+              />
+            </IconButton>
+          ) : (
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[700],
+                color: colors.grey[100],
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+              }}
+            >
+              <DownloadOutlinedIcon sx={{ mr: '10px' }} />
+              Download Reports
+            </Button>
+          )}
         </Box>
       </Box>
 
@@ -46,7 +58,7 @@ export const Dashboard = () => {
         m='40px 0 0 0'
       >
         <Box
-          gridColumn='span 3'
+          gridColumn={`span ${isMobile ? 12 : isTablet ? 6 : 3}`}
           bgcolor={colors.primary[400]}
           display='flex'
           alignItems='center'
@@ -65,7 +77,7 @@ export const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn='span 3'
+          gridColumn={`span ${isMobile ? 12 : isTablet ? 6 : 3}`}
           bgcolor={colors.primary[400]}
           display='flex'
           alignItems='center'
@@ -84,7 +96,7 @@ export const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn='span 3'
+          gridColumn={`span ${isMobile ? 12 : isTablet ? 6 : 3}`}
           bgcolor={colors.primary[400]}
           display='flex'
           alignItems='center'
@@ -103,7 +115,7 @@ export const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn='span 3'
+          gridColumn={`span ${isMobile ? 12 : isTablet ? 6 : 3}`}
           bgcolor={colors.primary[400]}
           display='flex'
           alignItems='center'
@@ -121,7 +133,11 @@ export const Dashboard = () => {
             }
           />
         </Box>
-        <Box gridColumn='span 8' gridRow='span 2' bgcolor={colors.primary[400]}>
+        <Box
+          gridColumn={`span ${isTablet ? 12 : 8}`}
+          gridRow='span 2'
+          bgcolor={colors.primary[400]}
+        >
           <Box
             mt='25px'
             p='0 30px'
@@ -158,7 +174,7 @@ export const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn='span 4'
+          gridColumn={`span ${isTablet ? 12 : 4}`}
           gridRow='span 2'
           bgcolor={colors.primary[400]}
           overflow='auto'
@@ -208,7 +224,7 @@ export const Dashboard = () => {
           ))}
         </Box>
         <Box
-          gridColumn='span 4'
+          gridColumn={`span ${isTablet ? 12 : 4}`}
           gridRow='span 2'
           bgcolor={colors.primary[400]}
           p='30px'
@@ -233,7 +249,11 @@ export const Dashboard = () => {
             <Typography>Includes extra misc expenditures and costs</Typography>
           </Box>
         </Box>
-        <Box gridColumn='span 4' gridRow='span 2' bgcolor={colors.primary[400]}>
+        <Box
+          gridColumn={`span ${isTablet ? 12 : 4}`}
+          gridRow='span 2'
+          bgcolor={colors.primary[400]}
+        >
           <Typography
             variant='h5'
             fontWeight='600'
@@ -246,7 +266,7 @@ export const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn='span 4'
+          gridColumn={`span ${isTablet ? 12 : 4}`}
           gridRow='span 2'
           bgcolor={colors.primary[400]}
           padding='30px'
