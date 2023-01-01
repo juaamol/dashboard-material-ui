@@ -23,12 +23,12 @@ import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import { useState } from 'react';
 import { SidebarItem } from './SidebarItem';
-import { useIsMobile } from '../../hooks/useIsMobile';
+import { useIsTablet } from '../../hooks/useIsTablet';
 import { useLocation } from 'react-router-dom';
 
 export const Sidebar = () => {
   const theme = useTheme();
-  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const path = useLocation().pathname;
   const colors = tokens(theme.palette.mode);
   const { collapseSidebar, collapsed: isCollapsed } = useProSidebar();
@@ -37,7 +37,7 @@ export const Sidebar = () => {
   return (
     <Box>
       <ProSidebar
-        defaultCollapsed={isMobile}
+        defaultCollapsed={isTablet}
         rootStyles={{
           [`.${sidebarClasses.container}`]: {
             backgroundColor: colors.primary[400],

@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material';
 import { Formik } from 'formik';
 import { Header } from '../../components/Header';
 import { validationSchema } from './validationSchema';
-import { useIsMobile } from '../../hooks/useIsMobile';
+import { useIsTablet } from '../../hooks/useIsTablet';
 
 const initialValues = {
   firstName: '',
@@ -14,7 +14,7 @@ const initialValues = {
 };
 
 export const Form = () => {
-  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const handleFormSubmit = (values: any) => console.log(values);
 
   return (
@@ -45,7 +45,7 @@ export const Form = () => {
               m='40px 0 0 0'
               gridTemplateColumns='repeat(4, minmax(0, 1fr))'
               sx={{
-                '& > div': { gridColumn: isMobile ? 'span 4' : undefined },
+                '& > div': { gridColumn: isTablet ? 'span 4' : undefined },
               }}
             >
               <TextField

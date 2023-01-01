@@ -15,12 +15,12 @@ import {
   useTheme,
 } from '@mui/material';
 import { tokens } from '../../theme';
-import { useIsMobile } from '../../hooks/useIsMobile';
+import { useIsTablet } from '../../hooks/useIsTablet';
 import { FormDialog } from './FormDialog';
 
 export const Calendar = () => {
   const theme = useTheme();
-  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const colors = tokens(theme.palette.mode);
   const [currentEvents, setCurrentEvents] = useState<any[]>([]);
   const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ export const Calendar = () => {
         m='40px 0 0 0'
         display='flex'
         justifyContent='space-between'
-        flexDirection={isMobile ? 'column-reverse' : undefined}
+        flexDirection={isTablet ? 'column-reverse' : undefined}
         gap='15px'
       >
         <Box
@@ -107,8 +107,8 @@ export const Calendar = () => {
         </Box>
         <Box
           flex='1 1 100%'
-          ml='15px'
           sx={{
+            overflowX: 'auto',
             '--fc-neutral-bg-color': colors.primary[400],
             '--fc-button-bg-color': colors.primary[400],
             ...(theme.palette.mode === 'dark'
@@ -118,6 +118,15 @@ export const Calendar = () => {
                   '--fc-button-active-bg-color': colors.grey[800],
                   '--fc-button-hover-bg-color': colors.grey[800],
                 }),
+            ...(isTablet
+              ? {
+                  '.fc .fc-toolbar': {
+                    flexDirection: 'column',
+                    alignItems: 'baseline',
+                    gap: '0.5rem',
+                  },
+                }
+              : {}),
           }}
         >
           <FullCalendar
@@ -129,8 +138,9 @@ export const Calendar = () => {
               listPlugin,
             ]}
             headerToolbar={{
-              left: 'prev,next today',
-              center: 'title',
+              ...(isTablet
+                ? { left: 'title', center: 'prev,next today' }
+                : { left: 'prev,next today', center: 'title' }),
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
             }}
             initialView='dayGridMonth'
